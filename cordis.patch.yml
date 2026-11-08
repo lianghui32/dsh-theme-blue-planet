@@ -1,0 +1,7 @@
+# Azure Planet · 蔚蓝星球 theme bundle patch
+# Inserts the theme plugin into the current profile config tree.
+# The Host applies the bundle immediately; the Client half paints the skin.
+
+- insert:
+    - id: theme-blue-planet
+      name: dsh-theme-blue-planet

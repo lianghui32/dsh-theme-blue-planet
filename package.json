@@ -1,0 +1,57 @@
+{
+  "name": "dsh-theme-blue-planet",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Azure Planet · 蔚蓝星球：深蓝星空 + 蓝色星球地平线的 DeepSeek Harness 主题，完整蓝色 token 覆盖、星环与可切换动效。",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "dsh-theme",
+    "deepseek-harness",
+    "theme",
+    "blue",
+    "planet",
+    "space"
+  ],
+  "icon": "./icon-256.png",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./package.json": "./package.json",
+    "./icon": "./icon-256.png",
+    "./icon.svg": "./icon.svg",
+    "./skin.json": "./skin.json",
+    "./assets/*": "./assets/*"
+  },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "client.js",
+    "cordis.patch.yml",
+    "icon-256.png",
+    "icon.svg",
+    "index.js",
+    "preview.png",
+    "skin.json",
+    "assets/*"
+  ],
+  "license": "MIT",
+  "author": "lianghui",
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": []
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "./index.js",
+  "engines": {
+    "dsh": ">=0.1.7"
+  }
+}
