@@ -14,13 +14,13 @@
 
 ## 安装
 
-在 DSH 插件市场搜索 **蔚蓝星球** / **Azure Planet**，或：
+从 GitHub 安装（市场条目同步中）：
 
 ```bash
-dsh plugin --profile desktop add dsh-theme-blue-planet
+dsh plugin --profile desktop add github:lianghui32/dsh-theme-blue-planet
 ```
 
-安装后主题立即生效（Host 热挂载）。也可以把本仓库的 `.tgz` 直接拖进市场安装。
+也可以下载 [v0.1.0 release](https://github.com/lianghui32/dsh-theme-blue-planet/releases/tag/v0.1.0) 里的 `.tgz`，拖进市场安装。安装后主题立即生效（Host 热挂载）。
 
 ## 说明
 
