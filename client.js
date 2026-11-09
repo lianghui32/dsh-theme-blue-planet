@@ -7,15 +7,18 @@
  * `--dsw-alias-*` design tokens the interface already reads — no component
  * CSS is patched.
  *
- * The scene is deliberately cheap to composite:
- *   - the sky, nebula, planet and veil are static gradients / SVG;
- *   - only a handful of stars twinkle, the atmosphere breathes, and one
- *     comet crosses the sky; all three are opacity / transform animations;
+ * The scene is deliberately cheap to composite — every moving part is an
+ * opacity / transform animation, no filters or shadows are animated:
+ *   - stars twinkle and the whole starfield drifts;
+ *   - nebulae breathe and wander;
+ *   - the planet floats while its cloud deck slowly churns;
+ *   - the moon bobs, the atmosphere breathes, a comet crosses the sky;
  *   - every animation pauses while the document is hidden.
  *
  * The theme is a skin: installing it applies it; the small bottom-right
- * palette lets the user soften (静谧) or hide (关闭) the scene without
- * uninstalling. The choice is remembered in localStorage.
+ * palette picks the energy level — 全辉 (everything moves, full glow),
+ * 静谧 (dimmed and still, for reading), 关闭 (scene hidden). The choice
+ * is remembered in localStorage.
  */
 
 window.__ModuleLoader__.load({
@@ -249,16 +252,28 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
 .bp-n1 {
   width: 70vmin; height: 44vmin; left: -8vmin; top: -6vmin;
   background: radial-gradient(closest-side, rgba(46, 130, 220, 0.20), rgba(20, 70, 150, 0) 74%);
-  transform: rotate(-18deg);
+  animation: bp-n1-drift 150s ease-in-out infinite alternate;
+}
+@keyframes bp-n1-drift {
+  from { transform: rotate(-18deg) translate3d(0, 0, 0) scale(1); }
+  to { transform: rotate(-14deg) translate3d(4%, -3%, 0) scale(1.08); }
 }
 .bp-n2 {
   width: 90vmin; height: 52vmin; right: -10vmin; top: 18vmin;
   background: radial-gradient(closest-side, rgba(30, 90, 170, 0.16), rgba(10, 40, 100, 0) 76%);
-  transform: rotate(24deg);
+  animation: bp-n2-drift 190s ease-in-out infinite alternate;
+}
+@keyframes bp-n2-drift {
+  from { transform: rotate(24deg) translate3d(0, 0, 0) scale(1); }
+  to { transform: rotate(28deg) translate3d(-3.5%, 3%, 0) scale(1.06); }
 }
 
-.bp-stars { position: absolute; inset: 0; }
+.bp-stars { position: absolute; inset: -3.5%; animation: bp-stars-drift 170s ease-in-out infinite alternate; }
 .bp-star-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+@keyframes bp-stars-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-2.2%, 1.2%, 0); }
+}
 .bp-tw {
   animation: bp-tw var(--bp-dur, 6s) ease-in-out var(--bp-delay, 0s) infinite;
 }
@@ -267,14 +282,21 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
   50% { opacity: calc(var(--bp-o, 0.6) * 0.32); }
 }
 
-/* A gas giant at the lower right: only its upper-left limb enters the frame. */
+/* A gas giant anchored in the lower-right corner — almost the whole sphere
+   is on screen so the limb and terminator read as a real ball, and the
+   whole body drifts slowly as if hanging in space. */
 .bp-planet {
   position: absolute;
-  right: -12vmin;
-  bottom: -18vmin;
-  width: 92vmin;
-  height: 92vmin;
+  right: 3vmin;
+  bottom: -15vmin;
+  width: 64vmin;
+  height: 64vmin;
   filter: saturate(1.05);
+  animation: bp-float 64s ease-in-out infinite alternate;
+}
+@keyframes bp-float {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-0.8vmin, -1.6vmin, 0); }
 }
 .bp-atmo {
   position: absolute;
@@ -301,25 +323,39 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
   z-index: 1;
   border-radius: 50%;
   overflow: hidden;
-  background: radial-gradient(circle at 32% 26%,
-    #e7f9ff 0%,
-    #b4e6ff 10%,
-    #6dc2f8 24%,
-    #3290dc 40%,
-    #1765b4 56%,
-    #0c4183 70%,
-    #072a58 84%,
-    #03142e 94%,
-    #010710 100%);
+  /* Sphere shading: tight hot highlight, fast falloff, dark limb. */
+  background: radial-gradient(circle at 31% 25%,
+    #f2fcff 0%,
+    #d3f1ff 6%,
+    #9fdefc 15%,
+    #63b8f4 30%,
+    #2f83cf 46%,
+    #135a9f 60%,
+    #083767 72%,
+    #04203f 82%,
+    #020e20 91%,
+    #010714 100%);
   box-shadow:
     inset 0 0 0 1px rgba(170, 226, 255, 0.22),
     inset 14px 18px 70px rgba(185, 235, 255, 0.22);
 }
 
+/* The cloud deck churns: a slow shear across the visible face. The wrapper
+   is oversized (inset -14%) so the drift never exposes the disc edge. */
+.bp-surface {
+  position: absolute;
+  inset: -14%;
+  animation: bp-surface-drift 110s ease-in-out infinite alternate;
+}
+@keyframes bp-surface-drift {
+  from { transform: translate3d(-3.2%, 0.6%, 0) rotate(-7.5deg); }
+  to { transform: translate3d(3.2%, -0.6%, 0) rotate(-4.5deg); }
+}
+
 /* Cloud bands, softened; screen blend keeps them luminous. */
 .bp-bands {
   position: absolute;
-  inset: -14%;
+  inset: 0;
   background:
     repeating-linear-gradient(171deg,
       rgba(200, 235, 255, 0) 0 4.2%,
@@ -329,7 +365,6 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
       rgba(200, 235, 255, 0) 11.2% 15.4%);
   filter: blur(8px);
   opacity: 0.85;
-  transform: rotate(-6deg);
 }
 .bp-clouds {
   position: absolute;
@@ -377,6 +412,7 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
   inset: 0;
   width: 100%;
   height: 100%;
+  overflow: visible;
   pointer-events: none;
 }
 .bp-ring-back {
@@ -387,7 +423,7 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
 .bp-ring-front {
   z-index: 2;
   opacity: 0.52;
-  clip-path: inset(-6% -6% 54% -6%);
+  clip-path: inset(54% -30% -30% -30%);
 }
 
 .bp-moon {
@@ -408,6 +444,11 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
   box-shadow:
     inset -5px -7px 16px rgba(0, 0, 0, 0.72),
     0 0 3.4vmin rgba(150, 200, 255, 0.16);
+  animation: bp-moon-float 96s ease-in-out infinite alternate;
+}
+@keyframes bp-moon-float {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(1.2vmin, -1.4vmin, 0); }
 }
 .bp-moon::before {
   content: "";
@@ -457,20 +498,42 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
       rgba(1, 4, 10, 0.32) 100%);
 }
 
-/* Calm: no comet, slower breath and twinkle. */
+/* Mode switching eases instead of snapping. */
+#${STAGE_ID} { transition: opacity 1.2s ease; }
+
+/* 静谧: the scene steps back — clearly dimmer, and still (no drift, no
+   twinkle, no comet). Reads as a different state at a glance. */
+html[data-bp-mode="calm"] #${STAGE_ID} { opacity: 0.42; }
 html[data-bp-mode="calm"] .bp-comet { display: none; }
-html[data-bp-mode="calm"] .bp-tw { animation-duration: 13s; }
-html[data-bp-mode="calm"] .bp-atmo { animation-duration: 26s; }
+html[data-bp-mode="calm"] .bp-tw,
+html[data-bp-mode="calm"] .bp-atmo,
+html[data-bp-mode="calm"] .bp-stars,
+html[data-bp-mode="calm"] .bp-n1,
+html[data-bp-mode="calm"] .bp-n2,
+html[data-bp-mode="calm"] .bp-moon,
+html[data-bp-mode="calm"] .bp-planet,
+html[data-bp-mode="calm"] .bp-surface {
+  animation-play-state: paused !important;
+}
 
 /* Hidden document: freeze every animation. */
 html.bp-paused .bp-tw,
 html.bp-paused .bp-atmo,
-html.bp-paused .bp-comet {
+html.bp-paused .bp-comet,
+html.bp-paused .bp-stars,
+html.bp-paused .bp-n1,
+html.bp-paused .bp-n2,
+html.bp-paused .bp-moon,
+html.bp-paused .bp-planet,
+html.bp-paused .bp-surface {
   animation-play-state: paused !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bp-tw, .bp-atmo, .bp-comet { animation: none !important; }
+  .bp-tw, .bp-atmo, .bp-comet, .bp-stars,
+  .bp-n1, .bp-n2, .bp-moon, .bp-planet, .bp-surface {
+    animation: none !important;
+  }
   .bp-comet { display: none; }
 }
 
@@ -610,12 +673,12 @@ html[data-bp-mode="off"] #${HUD_ID} { opacity: 0.72; }
           </linearGradient>
         </defs>
         <g transform="rotate(-20 500 500)">
-          <ellipse cx="500" cy="500" rx="470" ry="118" fill="none"
-            stroke="url(#bp-ring-grad-${position})" stroke-width="6"></ellipse>
-          <ellipse cx="500" cy="500" rx="431" ry="105" fill="none"
-            stroke="url(#bp-ring-grad-${position})" stroke-width="3" opacity="0.9"></ellipse>
-          <ellipse cx="500" cy="500" rx="492" ry="127" fill="none"
-            stroke="url(#bp-ring-grad-${position})" stroke-width="2" opacity="0.65"></ellipse>
+          <ellipse cx="500" cy="500" rx="560" ry="140" fill="none"
+            stroke="url(#bp-ring-grad-${position})" stroke-width="7"></ellipse>
+          <ellipse cx="500" cy="500" rx="514" ry="124" fill="none"
+            stroke="url(#bp-ring-grad-${position})" stroke-width="3.5" opacity="0.9"></ellipse>
+          <ellipse cx="500" cy="500" rx="590" ry="152" fill="none"
+            stroke="url(#bp-ring-grad-${position})" stroke-width="2.4" opacity="0.65"></ellipse>
         </g>
       </svg>`
     }
@@ -630,8 +693,10 @@ html[data-bp-mode="off"] #${HUD_ID} { opacity: 0.72; }
           <div class="bp-atmo"></div>
           ${ringSvg('back')}
           <div class="bp-disc">
-            <div class="bp-bands"></div>
-            <div class="bp-clouds"></div>
+            <div class="bp-surface">
+              <div class="bp-bands"></div>
+              <div class="bp-clouds"></div>
+            </div>
             <div class="bp-shade"></div>
             <div class="bp-rim"></div>
           </div>
