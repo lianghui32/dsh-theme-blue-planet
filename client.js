@@ -309,10 +309,10 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
   border-radius: 50%;
   background: radial-gradient(circle closest-side,
     rgba(90, 180, 255, 0) 0%,
-    rgba(90, 180, 255, 0) 80%,
-    rgba(110, 200, 255, 0.16) 83%,
-    rgba(160, 225, 255, 0.30) 87%,
-    rgba(70, 150, 255, 0.10) 92%,
+    rgba(90, 180, 255, 0) 79%,
+    rgba(120, 205, 255, 0.26) 83%,
+    rgba(175, 232, 255, 0.52) 87%,
+    rgba(80, 165, 255, 0.20) 92%,
     rgba(70, 150, 255, 0) 98%);
   filter: blur(0.35vmin);
   animation: bp-breathe 16s ease-in-out infinite;
@@ -331,16 +331,16 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
   /* Sphere shading: light from the upper right so the lit face lands in the
      open right margin of the app (the chat column covers the center-left). */
   background: radial-gradient(circle at 74% 24%,
-    #f8feff 0%,
-    #ddf5ff 6%,
-    #b8e9ff 13%,
-    #83cdff 24%,
-    #4fa9ec 37%,
-    #2f80c9 50%,
-    #1a5f9b 63%,
-    #0c3a66 74%,
-    #04203c 84%,
-    #010b18 100%);
+    #ffffff 0%,
+    #eafaff 8%,
+    #c9f1ff 18%,
+    #96daff 30%,
+    #62baf3 44%,
+    #3f8fce 56%,
+    #2569a4 68%,
+    #123f6b 80%,
+    #0b2b48 92%,
+    #071f36 100%);
   box-shadow:
     inset 0 0 0 1px rgba(170, 226, 255, 0.22),
     inset -14px 18px 70px rgba(185, 235, 255, 0.22);
@@ -380,22 +380,22 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
     radial-gradient(26% 8% at 61% 50%, rgba(206, 238, 255, 0.40), rgba(130, 195, 255, 0.08) 60%, transparent 76%),
     radial-gradient(16% 6% at 44% 65%, rgba(186, 228, 255, 0.32), transparent 72%),
     radial-gradient(40% 13% at 52% 82%, rgba(160, 210, 255, 0.22), transparent 74%);
-  filter: blur(14px);
-  opacity: 0.26;
+  filter: blur(12px);
+  opacity: 0.18;
   mix-blend-mode: screen;
 }
 .bp-shade {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(112% 112% at 74% 24%,
+    radial-gradient(108% 108% at 74% 24%,
       rgba(2, 6, 16, 0) 0%,
-      rgba(2, 6, 16, 0) 34%,
-      rgba(2, 6, 16, 0.26) 46%,
-      rgba(2, 6, 16, 0.60) 58%,
-      rgba(1, 4, 12, 0.86) 70%,
-      rgba(0, 2, 8, 0.95) 82%,
-      rgba(0, 2, 8, 0.98) 100%),
+      rgba(2, 6, 16, 0) 44%,
+      rgba(2, 6, 16, 0.18) 52%,
+      rgba(2, 6, 16, 0.62) 60%,
+      rgba(1, 4, 12, 0.90) 68%,
+      rgba(0, 2, 8, 0.97) 78%,
+      rgba(0, 2, 8, 0.99) 100%),
     linear-gradient(230deg,
       transparent 40%,
       rgba(0, 3, 10, 0.18) 58%,
@@ -407,9 +407,11 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
   inset: 0;
   border-radius: 50%;
   box-shadow:
-    inset -8px 10px 26px rgba(210, 244, 255, 0.42),
-    inset 0 0 0 2px rgba(170, 226, 255, 0.46),
-    0 0 3.2vmin rgba(90, 175, 255, 0.22);
+    inset -8px 10px 26px rgba(214, 246, 255, 0.46),
+    inset 0 0 0 2px rgba(180, 232, 255, 0.44),
+    0 0 0 1px rgba(150, 215, 255, 0.42),
+    0 0 2.6vmin rgba(95, 180, 255, 0.30),
+    0 0 7vmin 1.2vmin rgba(1, 5, 12, 0.62);
 }
 
 /* A tilted icy ring. The lower half is a second copy clipped to pass in
