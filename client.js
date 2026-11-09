@@ -212,7 +212,7 @@ html body div[class*="centerCol"] div[class$="_root"] {
    the whole scene down to ~38%, which is why the planet looked like a black
    ball. Keep just enough tint to hold the edges, let the art through. */
 html body div[class$="_frame"] {
-  background-color: rgba(3, 9, 20, 0.20) !important;
+  background-color: rgba(3, 9, 20, 0.10) !important;
   background-image: none !important;
 }
 ::selection {
@@ -295,10 +295,10 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
    whole body drifts slowly as if hanging in space. */
 .bp-planet {
   position: absolute;
-  right: 0vmin;
-  bottom: -7vmin;
-  width: 76vmin;
-  height: 76vmin;
+  right: 1vmin;
+  bottom: -3vmin;
+  width: 66vmin;
+  height: 66vmin;
   filter: saturate(1.05);
   animation: bp-float 64s ease-in-out infinite alternate;
 }
@@ -334,16 +334,16 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
   /* Sphere shading: light from the upper right so the lit face lands in the
      open right margin of the app (the chat column covers the center-left). */
   background: radial-gradient(circle at 74% 24%,
-    #f2fcff 0%,
-    #d3f1ff 7%,
-    #a8e2ff 17%,
-    #6fbdf6 33%,
-    #3a93dd 50%,
-    #1f6ab4 64%,
-    #0d4579 76%,
-    #04203f 82%,
-    #020e20 91%,
-    #010714 100%);
+    #f8feff 0%,
+    #ddf5ff 6%,
+    #b8e9ff 13%,
+    #83cdff 24%,
+    #4fa9ec 37%,
+    #2f80c9 50%,
+    #1a5f9b 63%,
+    #0c3a66 74%,
+    #04203c 84%,
+    #010b18 100%);
   box-shadow:
     inset 0 0 0 1px rgba(170, 226, 255, 0.22),
     inset -14px 18px 70px rgba(185, 235, 255, 0.22);
@@ -372,8 +372,8 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
       rgba(200, 235, 255, 0) 5.8% 9.1%,
       rgba(8, 36, 80, 0.20) 9.1% 11.2%,
       rgba(200, 235, 255, 0) 11.2% 15.4%);
-  filter: blur(8px);
-  opacity: 0.85;
+  filter: blur(7px);
+  opacity: 0.40;
 }
 .bp-clouds {
   position: absolute;
@@ -383,22 +383,22 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
     radial-gradient(26% 8% at 61% 50%, rgba(206, 238, 255, 0.40), rgba(130, 195, 255, 0.08) 60%, transparent 76%),
     radial-gradient(16% 6% at 44% 65%, rgba(186, 228, 255, 0.32), transparent 72%),
     radial-gradient(40% 13% at 52% 82%, rgba(160, 210, 255, 0.22), transparent 74%);
-  filter: blur(12px);
-  opacity: 0.85;
+  filter: blur(14px);
+  opacity: 0.26;
   mix-blend-mode: screen;
 }
 .bp-shade {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(118% 118% at 74% 24%,
+    radial-gradient(112% 112% at 74% 24%,
       rgba(2, 6, 16, 0) 0%,
-      rgba(2, 6, 16, 0) 43%,
-      rgba(2, 6, 16, 0.20) 54%,
-      rgba(2, 6, 16, 0.52) 65%,
-      rgba(1, 4, 12, 0.80) 76%,
-      rgba(0, 2, 8, 0.93) 87%,
-      rgba(0, 2, 8, 0.97) 100%),
+      rgba(2, 6, 16, 0) 34%,
+      rgba(2, 6, 16, 0.26) 46%,
+      rgba(2, 6, 16, 0.60) 58%,
+      rgba(1, 4, 12, 0.86) 70%,
+      rgba(0, 2, 8, 0.95) 82%,
+      rgba(0, 2, 8, 0.98) 100%),
     linear-gradient(230deg,
       transparent 40%,
       rgba(0, 3, 10, 0.18) 58%,
@@ -410,8 +410,9 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
   inset: 0;
   border-radius: 50%;
   box-shadow:
-    inset -7px 9px 24px rgba(196, 238, 255, 0.30),
-    inset 0 0 0 2px rgba(160, 220, 255, 0.32);
+    inset -8px 10px 26px rgba(210, 244, 255, 0.42),
+    inset 0 0 0 2px rgba(170, 226, 255, 0.46),
+    0 0 3.2vmin rgba(90, 175, 255, 0.22);
 }
 
 /* A tilted icy ring. The lower half is a second copy clipped to pass in
@@ -502,9 +503,9 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
       rgba(1, 4, 10, 0.10) 56%,
       rgba(1, 4, 10, 0.34) 100%),
     linear-gradient(180deg,
-      rgba(1, 4, 10, 0.20) 0%,
-      rgba(1, 4, 10, 0.06) 30%,
-      rgba(1, 4, 10, 0.24) 100%);
+      rgba(1, 4, 10, 0.12) 0%,
+      rgba(1, 4, 10, 0.04) 30%,
+      rgba(1, 4, 10, 0.16) 100%);
 }
 
 /* Mode switching eases instead of snapping. */
