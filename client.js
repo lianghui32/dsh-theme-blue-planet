@@ -217,9 +217,9 @@ html body div[class*="centerCol"] div[class$="_root"] {
    reads through, dark enough for long-form text. */
 html body div[class*="centerCol"] {
   background: linear-gradient(180deg,
-    rgba(4, 12, 26, 0.30) 0%,
-    rgba(3, 10, 22, 0.42) 52%,
-    rgba(2, 8, 18, 0.55) 100%) !important;
+    rgba(4, 12, 26, 0.22) 0%,
+    rgba(3, 10, 22, 0.32) 52%,
+    rgba(2, 8, 18, 0.44) 100%) !important;
 }
 html body div[class*="sidebarCol"] {
   background: linear-gradient(180deg,
@@ -288,10 +288,10 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
    whole body drifts slowly as if hanging in space. */
 .bp-planet {
   position: absolute;
-  right: 3vmin;
-  bottom: -15vmin;
-  width: 64vmin;
-  height: 64vmin;
+  right: 0vmin;
+  bottom: -11vmin;
+  width: 76vmin;
+  height: 76vmin;
   filter: saturate(1.05);
   animation: bp-float 64s ease-in-out infinite alternate;
 }
@@ -327,12 +327,12 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
   /* Sphere shading: tight hot highlight, fast falloff, dark limb. */
   background: radial-gradient(circle at 31% 25%,
     #f2fcff 0%,
-    #d3f1ff 6%,
-    #9fdefc 15%,
-    #63b8f4 30%,
-    #2f83cf 46%,
-    #135a9f 60%,
-    #083767 72%,
+    #d3f1ff 7%,
+    #a8e2ff 17%,
+    #6fbdf6 33%,
+    #3a93dd 50%,
+    #1f6ab4 64%,
+    #0d4579 76%,
     #04203f 82%,
     #020e20 91%,
     #010714 100%);
@@ -491,12 +491,12 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
   background:
     radial-gradient(118% 88% at 50% 44%,
       rgba(1, 4, 10, 0.02) 0%,
-      rgba(1, 4, 10, 0.18) 56%,
-      rgba(1, 4, 10, 0.50) 100%),
+      rgba(1, 4, 10, 0.10) 56%,
+      rgba(1, 4, 10, 0.34) 100%),
     linear-gradient(180deg,
-      rgba(1, 4, 10, 0.28) 0%,
-      rgba(1, 4, 10, 0.08) 30%,
-      rgba(1, 4, 10, 0.32) 100%);
+      rgba(1, 4, 10, 0.20) 0%,
+      rgba(1, 4, 10, 0.06) 30%,
+      rgba(1, 4, 10, 0.24) 100%);
 }
 
 /* Mode switching eases instead of snapping. */
