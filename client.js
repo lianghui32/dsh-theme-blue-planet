@@ -289,7 +289,7 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
 .bp-planet {
   position: absolute;
   right: 0vmin;
-  bottom: -11vmin;
+  bottom: -7vmin;
   width: 76vmin;
   height: 76vmin;
   filter: saturate(1.05);
@@ -324,8 +324,9 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
   z-index: 1;
   border-radius: 50%;
   overflow: hidden;
-  /* Sphere shading: tight hot highlight, fast falloff, dark limb. */
-  background: radial-gradient(circle at 31% 25%,
+  /* Sphere shading: light from the upper right so the lit face lands in the
+     open right margin of the app (the chat column covers the center-left). */
+  background: radial-gradient(circle at 74% 24%,
     #f2fcff 0%,
     #d3f1ff 7%,
     #a8e2ff 17%,
@@ -338,7 +339,7 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
     #010714 100%);
   box-shadow:
     inset 0 0 0 1px rgba(170, 226, 255, 0.22),
-    inset 14px 18px 70px rgba(185, 235, 255, 0.22);
+    inset -14px 18px 70px rgba(185, 235, 255, 0.22);
 }
 
 /* The cloud deck churns: a slow shear across the visible face. The wrapper
@@ -383,7 +384,7 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(118% 118% at 26% 24%,
+    radial-gradient(118% 118% at 74% 24%,
       rgba(2, 6, 16, 0) 0%,
       rgba(2, 6, 16, 0) 43%,
       rgba(2, 6, 16, 0.20) 54%,
@@ -391,7 +392,7 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
       rgba(1, 4, 12, 0.80) 76%,
       rgba(0, 2, 8, 0.93) 87%,
       rgba(0, 2, 8, 0.97) 100%),
-    linear-gradient(130deg,
+    linear-gradient(230deg,
       transparent 40%,
       rgba(0, 3, 10, 0.18) 58%,
       rgba(0, 2, 8, 0.50) 74%,
@@ -402,7 +403,7 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
   inset: 0;
   border-radius: 50%;
   box-shadow:
-    inset 7px 9px 24px rgba(196, 238, 255, 0.30),
+    inset -7px 9px 24px rgba(196, 238, 255, 0.30),
     inset 0 0 0 2px rgba(160, 220, 255, 0.32);
 }
 
@@ -429,7 +430,7 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
 
 .bp-moon {
   position: absolute;
-  left: 13%;
+  left: 24%;
   top: 15%;
   width: 8.6vmin;
   height: 8.6vmin;
