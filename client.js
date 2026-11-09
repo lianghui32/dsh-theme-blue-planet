@@ -208,6 +208,13 @@ html body {
 html body div[class*="centerCol"] div[class$="_root"] {
   background-color: transparent !important;
 }
+/* The app frame is a full-viewport scrim; at its stock opacity it multiplies
+   the whole scene down to ~38%, which is why the planet looked like a black
+   ball. Keep just enough tint to hold the edges, let the art through. */
+html body div[class$="_frame"] {
+  background-color: rgba(3, 9, 20, 0.20) !important;
+  background-image: none !important;
+}
 ::selection {
   background: rgba(90, 169, 255, 0.34) !important;
   color: #f2f9ff !important;
