@@ -223,10 +223,7 @@ html body div[class$="_frame"] {
 /* Panels sit above the planet; keep them translucent enough that the limb
    reads through, dark enough for long-form text. */
 html body div[class*="centerCol"] {
-  background: linear-gradient(180deg,
-    rgba(4, 12, 26, 0.22) 0%,
-    rgba(3, 10, 22, 0.32) 52%,
-    rgba(2, 8, 18, 0.44) 100%) !important;
+  background: transparent !important;
 }
 html body div[class*="sidebarCol"] {
   background: linear-gradient(180deg,
@@ -296,9 +293,9 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
 .bp-planet {
   position: absolute;
   right: 1vmin;
-  bottom: -3vmin;
-  width: 66vmin;
-  height: 66vmin;
+  bottom: 1vmin;
+  width: 60vmin;
+  height: 60vmin;
   filter: saturate(1.05);
   animation: bp-float 64s ease-in-out infinite alternate;
 }
@@ -438,8 +435,8 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
 
 .bp-moon {
   position: absolute;
-  left: 24%;
-  top: 15%;
+  left: 26%;
+  top: 12%;
   width: 8.6vmin;
   height: 8.6vmin;
   border-radius: 50%;
