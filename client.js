@@ -25,6 +25,7 @@ window.__ModuleLoader__.load({
   id: 'dsh-theme-blue-planet',
   factory() {
     const STORE_KEY = 'dsh-theme-blue-planet/mode'
+const MIGRATE_KEY = 'dsh-theme-blue-planet/mode-v2'
     const STAGE_ID = 'bp-stage'
     const STYLE_ID = 'bp-style'
     const HUD_ID = 'bp-hud'
@@ -604,7 +605,16 @@ html[data-bp-mode="off"] #${HUD_ID} { opacity: 0.72; }
     function readMode() {
       try {
         const stored = window.localStorage.getItem(STORE_KEY)
-        if (MODES.includes(stored)) return stored
+        if (MODES.includes(stored)) {
+          // v0.1.0 的“静谧”和全辉几乎没有区别，升级到 v0.2.0 时把旧的
+          // calm 视为残留状态重置一次（只跑一次，之后的选择不再干涉）。
+          if (stored === 'calm' && !window.localStorage.getItem(MIGRATE_KEY)) {
+            window.localStorage.setItem(MIGRATE_KEY, '1')
+            window.localStorage.setItem(STORE_KEY, 'full')
+            return 'full'
+          }
+          return stored
+        }
       } catch (err) { /* storage may be unavailable */ }
       const reduced = typeof window.matchMedia === 'function'
         && window.matchMedia('(prefers-reduced-motion: reduce)').matches
