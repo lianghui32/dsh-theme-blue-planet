@@ -373,10 +373,10 @@ html[data-bp-mode="off"] #${STAGE_ID} { display: none; }
 
 .bp-moon {
   position: absolute;
-  left: 18%;
-  top: 9%;
-  width: 11.5vmin;
-  height: 11.5vmin;
+  left: 16%;
+  top: 34%;
+  width: 12.5vmin;
+  height: 12.5vmin;
   border-radius: 50%;
   opacity: 0.92;
   /* Rendered sphere with a crater field: a flat gradient read as a square
